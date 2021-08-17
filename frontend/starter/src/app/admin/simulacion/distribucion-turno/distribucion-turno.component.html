@@ -1,0 +1,230 @@
+<div class="col-lg-12 col-xs-12" *ngIf="procesando">
+    <br/>
+    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+  </div>
+<form class="m-4" [formGroup]="form" (ngSubmit)="formSubmit()" style="font-size: 12px">
+    <div class="row" style="font-size: 12px">
+        <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-xs-12">
+          <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>Area</mat-label>
+            <mat-select [(value)]="selectedArea" formControlName="area"
+              (selectionChange)="listaEspecialidades()">
+              <mat-option [value]="option" *ngFor="let option of areas">{{ option.descripcion }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-xs-12" *ngIf="selectedAreaStatus==1">
+          <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>Semestre</mat-label>
+            <mat-select [(value)]="selectedSemestre" formControlName="semestre">
+              <mat-option [value]="option.semestre" *ngFor="let option of semestres">{{ option.descripcion }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-xs-12" *ngIf="selectedAreaStatus==2">
+          <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>Año Proceso</mat-label>
+            <mat-select formControlName="annoProceso">
+              <mat-option [value]="option.annoProceso" *ngFor="let option of annos">{{ option.annoProceso }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-xs-12" *ngIf="selectedAreaStatus==2">
+          <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>Mes Proceso</mat-label>
+            <mat-select formControlName="mesProceso">
+              <mat-option [value]="option.codigo" *ngFor="let option of meses">{{ option.codigo }} - {{ option.descripcion }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-xs-12"><!-- *ngIf="isSedeFilial"-->
+          <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>Filial</mat-label>
+            <mat-select [(value)]="selectedFilial" (selectionChange)="listaSedes()" formControlName="filial">
+              <mat-option [value]="0" selected>Todos</mat-option>
+              <mat-option [value]="option" *ngFor="let option of filiales">{{ option.descripcion }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-xs-12"><!-- *ngIf="isSedeFilial"-->
+          <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>Sede</mat-label>
+            <mat-select [(value)]="selectedSede" formControlName="sede">
+              <mat-option [value]="0" selected>Todos</mat-option>
+              <mat-option [value]="option" *ngFor="let option of sedes">{{ option.descripcion }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="col-xl-4 col-lg-6 col-md-4 col-sm-6 col-xs-12"><!--*ngIf="isEspecialidad"-->
+          <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>Especialidad</mat-label>
+            <mat-select [(value)]="selectedEspecialidad" formControlName="especialidad">
+              <mat-option [value]="0" selected>Todos</mat-option>
+              <mat-option [value]="option" *ngFor="let option of especialidades">{{
+                option.descripcion }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row" style="font-size: 12px">
+        <div class="col-lg-4 col-md-4 col-sm-5 col-xs-12">
+          <mat-checkbox class="example-margin" [(ngModel)]="flag" formControlName="flag"
+            color="primary" >Total Horas por Programa Acad&eacute;mico</mat-checkbox>
+            
+        </div>
+      </div>
+      <!--<div class="row" style="font-size: 12px">
+        <div class="col-lg-4 col-md-4 col-sm-5 col-xs-12">
+          <mat-checkbox class="example-margin" [(ngModel)]="isSedeFilial" formControlName="isSedeFilial"
+            color="primary"  (change)="changeisSedeFilial($event)">Sede</mat-checkbox>
+            <mat-checkbox class="example-margin" [(ngModel)]="isEspecialidad" formControlName="isEspecialidad"
+            color="primary" (change)="changeisEspecialidad($event)">Especialidad</mat-checkbox>
+        </div>
+      </div>-->
+      <div class="row" style="font-size: 12px">
+        <div class="col-sm-12 col-xs-12">
+          <button class="mr-3" [disabled]="!form.valid || procesando" mat-raised-button color="primary"
+            (click)="filtrar()">
+            <mat-icon class="col-white">filter_list
+            </mat-icon> Filtrar
+          </button>
+          <!--<button class="mr-3" [disabled]="!progAcademicaLista" mat-raised-button color="primary"
+            (click)="exportar()">
+            <mat-icon class="col-white">file_download
+            </mat-icon> Exportar
+          </button>-->
+        </div>
+      </div>
+  </form>  
+  <div class="row" style="font-size: 12px">
+    <div class="col-sm-12 col-xs-12">
+      <div class="body table-responsive">
+        <div class="materialTableHeader">
+          <div class="row">
+            <div class="col-sm-8 col-xs-8">
+              <ul class="header-buttons-left ml-0">
+                <li class="dropdown m-l-20">
+                  <label for="search-input"><i class="material-icons search-icon">search</i></label>
+                  <input placeholder="Buscar" type="text" class="browser-default search-field"
+                    aria-label="Search box" (keyup)="applyFilterSimulacion($event)">
+                </li>
+              </ul>
+            </div>
+            <div class="col-sm-4 col-xs-4">
+              <ul class="header-buttons">
+                <li>
+                  <div class="icon-button-demo">
+                    <button mat-mini-fab color="primary" (click)="generateExcel()" [disabled]="!progAcademicaLista">
+                      <mat-icon class="col-white">file_download
+                      </mat-icon>
+                    </button>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <table mat-table [dataSource]="dataSourceSimulacion" class="w-100" #sortSimulacionTableSort="matSort" matSort>
+      
+          <!-- Name Column -->
+          <ng-container matColumnDef="nombreArea">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Area </th>
+            <td mat-cell *matCellDef="let element"> {{element.nombreArea}} </td>
+          </ng-container>
+          <ng-container matColumnDef="semestre">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Semestre </th>
+            <td mat-cell *matCellDef="let element"> {{element.semestre}} </td>
+          </ng-container>
+          <ng-container matColumnDef="annoProceso">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Año </th>
+            <td mat-cell *matCellDef="let element"> {{element.annoProceso}} </td>
+          </ng-container>
+          <ng-container matColumnDef="mesProceso">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Mes </th>
+            <td mat-cell *matCellDef="let element"> {{element.mesProceso}} </td>
+          </ng-container>
+          <ng-container matColumnDef="nombreFilial">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Filial </th>
+            <td mat-cell *matCellDef="let element"> {{element.nombreFilial}} </td>
+          </ng-container>
+          <ng-container matColumnDef="nombreSede">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Sede </th>
+            <td mat-cell *matCellDef="let element"> {{element.nombreSede}} </td>
+          </ng-container>
+          <ng-container matColumnDef="codigoLocalSUNEDU">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Codigo Local SUNEDU </th>
+            <td mat-cell *matCellDef="let element"> {{element.codigoLocalSUNEDU}} </td>
+          </ng-container>
+          <ng-container matColumnDef="nombrePrograma">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Programa </th>
+            <td mat-cell *matCellDef="let element"> {{element.nombrePrograma}} </td>
+          </ng-container>
+          <ng-container matColumnDef="nombreEspecialidad">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Escuela </th>
+            <td mat-cell *matCellDef="let element"> {{element.nombreEspecialidad}} </td>
+          </ng-container>
+          <ng-container matColumnDef="ciclo">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Ciclo </th>
+            <td mat-cell *matCellDef="let element"> {{element.ciclo}} </td>
+          </ng-container>
+          <ng-container matColumnDef="curso">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Asignatura </th>
+            <td mat-cell *matCellDef="let element"> {{element.curso}} </td>
+          </ng-container>
+          <ng-container matColumnDef="turno">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Turno </th>
+            <td mat-cell *matCellDef="let element"> {{element.turno}} </td>
+          </ng-container>
+          <ng-container matColumnDef="fechaInicio">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> F.Inicio </th>
+            <td mat-cell *matCellDef="let element"> {{element.fechaInicio | date:'dd/MM/yyyy'}}&nbsp; </td>
+          </ng-container>
+          <ng-container matColumnDef="fechaFin">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> F.Fin </th>
+            <td mat-cell *matCellDef="let element"> {{element.fechaFin | date:'dd/MM/yyyy'}}&nbsp; </td>
+          </ng-container>
+          <ng-container matColumnDef="nombreTipoAmbiente">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Ambiente </th>
+            <td mat-cell *matCellDef="let element"> {{element.nombreTipoAmbiente}} </td>
+          </ng-container>
+          <ng-container matColumnDef="grupo">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Grupo </th>
+            <td mat-cell *matCellDef="let element"> {{element.grupo}} </td>
+          </ng-container>
+          <ng-container matColumnDef="manana">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Mañana </th>
+            <td mat-cell *matCellDef="let element"> {{element.manana}} </td>
+          </ng-container>
+          <ng-container matColumnDef="tarde">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Tarde </th>
+            <td mat-cell *matCellDef="let element"> {{element.tarde}} </td>
+          </ng-container>
+          <ng-container matColumnDef="noche">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Noche </th>
+            <td mat-cell *matCellDef="let element"> {{element.noche}} </td>
+          </ng-container>
+          <!-- Aforo Column -->
+          
+          <tr mat-header-row *matHeaderRowDef="displayedColumnsSimulacion; sticky: true"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumnsSimulacion;"></tr>
+        </table>
+        <!-- Loading spinner -->
+        <div *ngIf="isTblLoadingSimulacion" class="tbl-spinner">
+          <mat-progress-spinner color="primary" [diameter]="40" mode="indeterminate">
+          </mat-progress-spinner>
+        </div>
+      </div>
+      <div *ngIf="!isTblLoadingSimulacion" class="no-results"
+        [style.display]="dataSourceSimulacion?.data.length == 0 ? '' : 'none'">
+        No results
+      </div>
+      <mat-paginator #paginatorSimulacion [pageSizeOptions]="[5,10, 20]" [pageSize]="10" showFirstLastButtons>
+      </mat-paginator>
+    </div>
+  </div>

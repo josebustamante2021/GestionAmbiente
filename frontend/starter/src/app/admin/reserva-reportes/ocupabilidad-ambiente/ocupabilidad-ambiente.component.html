@@ -1,0 +1,260 @@
+<div class="col-lg-12 col-xs-12" *ngIf="procesando">
+    <br/>
+    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+  </div>
+  <form class="m-4" [formGroup]="form" style="font-size: 12px">
+      <div class="row" style="font-size: 12px">
+          <div class="col-xl-2 col-lg-3 col-md-4 col-sm-5 col-xs-12"><!-- *ngIf="isSedeFilial"-->
+            <mat-form-field class="example-full-width" appearance="outline">
+              <mat-label>Filial</mat-label>
+              <mat-select [(value)]="selectedFilial" (selectionChange)="listaSedes()" formControlName="filial">
+                <mat-option [value]="0" selected>Todos</mat-option>
+                <mat-option [value]="option" *ngFor="let option of filiales">{{ option.descripcion }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="col-xl-2 col-lg-3 col-md-4 col-sm-5 col-xs-12"><!-- *ngIf="isSedeFilial"-->
+            <mat-form-field class="example-full-width" appearance="outline">
+              <mat-label>Sede</mat-label>
+              <mat-select [(value)]="selectedSede" formControlName="sede" (selectionChange)="listaAmbientes()" >
+                <mat-option [value]="0" selected>Todos</mat-option>
+                <mat-option [value]="option" *ngFor="let option of sedes">{{ option.descripcion }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="col-xl-2 col-lg-3 col-md-4 col-sm-5 col-xs-12">
+            <mat-form-field class="example-full-width" appearance="outline">
+              <mat-label>Tipo de Ambiente</mat-label>
+              <mat-select [(value)]="selectedTipoAmbiente" formControlName="tipoAmbiente" (selectionChange)="listaAmbientes()">
+                <mat-option [value]="" >Seleccionar</mat-option>
+                <mat-option [value]="option" *ngFor="let option of tiposAmbiente">{{ option.descripcion }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="col-xl-2 col-lg-3 col-md-4 col-sm-5 col-xs-12">
+            <mat-form-field class="example-full-width" appearance="outline">
+              <mat-label>Ambiente</mat-label>
+              <mat-select formControlName="ambiente">
+                <mat-option [value]="0" selected>Todos</mat-option>
+                <mat-option [value]="option" *ngFor="let option of ambientes">{{ option.codigo }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="col-xl-2 col-lg-3 col-md-4 col-sm-5 col-xs-12">
+            <mat-form-field class="example-full-width" appearance="outline">
+              <mat-label>Turno</mat-label>
+              <mat-select formControlName="turno"(selectionChange)="listaHoras()">
+                <!--<mat-option [value]="0" selected>Todos</mat-option>-->
+                <mat-option [value]="option" *ngFor="let option of turnos">{{ option.turno }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="col-xl-2 col-lg-3 col-md-4 col-sm-5 col-xs-12">
+            <mat-form-field class="example-full-width" appearance="outline">
+              <mat-label>Dia</mat-label>
+              <mat-select [(value)]="selectedDia" formControlName="dia">
+                <mat-option [value]="option" *ngFor="let option of dias">{{ option.nombre }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+        
+        <div class="row" style="font-size: 12px">                    
+          <div class="col-xl-2 col-lg-3 col-md-4 col-sm-5 col-xs-12">
+            <mat-form-field class="example-full-width" appearance="outline">
+              <mat-label>Fecha Inicio</mat-label>
+              <input matInput [matDatepicker]="pickerFInicio" formControlName="fechaInicio" (click)="pickerFInicio.open()" [max]="form.controls.fechaFin.value">
+                <mat-datepicker-toggle matSuffix [for]="pickerFInicio"></mat-datepicker-toggle>
+                <mat-datepicker #pickerFInicio></mat-datepicker>
+              <mat-error *ngIf="form.get('fechaInicio').hasError('required')">
+                Fecha Inicio is required
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col-xl-2 col-lg-3 col-md-4 col-sm-5 col-xs-12">
+            <mat-form-field class="example-full-width" appearance="outline">
+              <mat-label>Fecha Fin</mat-label>
+              <input matInput [matDatepicker]="pickerFFin" formControlName="fechaFin" (click)="pickerFFin.open()" [min]="form.controls.fechaInicio.value">
+                <mat-datepicker-toggle matSuffix [for]="pickerFFin"></mat-datepicker-toggle>
+                <mat-datepicker #pickerFFin></mat-datepicker>
+              <mat-error *ngIf="form.get('fechaFin').hasError('required')">
+                Fecha Fin is required
+              </mat-error>
+            </mat-form-field>
+          </div>
+              <div class="col-xl-2 col-lg-3 col-md-4 col-sm-5 col-xs-12">
+                <mat-form-field class="example-full-width" appearance="outline">
+                  <mat-label>Hora Inicio</mat-label>
+                  <mat-select formControlName="horaInicio">
+                    <mat-option [value]="option.horaInicio" *ngFor="let option of horas">{{ option.horaInicio }}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div class="col-xl-2 col-lg-3 col-md-4 col-sm-5 col-xs-12">
+                <mat-form-field class="example-full-width" appearance="outline">
+                  <mat-label>Hora Fin</mat-label>
+                  <mat-select formControlName="horaFin">
+                    <mat-option [value]="option.horaFin" *ngFor="let option of horas">{{ option.horaFin }}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>  
+          <div class="col-xl-4 col-lg-4 col-md-12 col-xs-12">
+            <button class="mr-3" [disabled]="!form.valid || procesando" mat-raised-button color="primary"
+              (click)="filtrar()">
+              <mat-icon class="col-white">filter_list
+              </mat-icon> Filtrar
+            </button>
+          </div>
+        </div>
+    </form>  
+
+    <div class="row" style="font-size: 12px">
+        <div class="col-sm-12 col-xs-12">
+          <div class="body table-responsive">
+            <div class="materialTableHeader">
+              <div class="row">
+                <div class="col-sm-8 col-xs-8">
+                  <ul class="header-buttons-left ml-0">
+                    <li class="dropdown m-l-20">
+                      <label for="search-input"><i class="material-icons search-icon">search</i></label>
+                      <input placeholder="Buscar" type="text" class="browser-default search-field"
+                        aria-label="Search box" (keyup)="applyFilter($event)">
+                    </li>
+                  </ul>
+                </div>
+                <div class="col-sm-4 col-xs-4">
+                  <ul class="header-buttons">
+                    <li>
+                      <div class="icon-button-demo">
+                        <button mat-mini-fab color="primary" (click)="generateExcel()" [disabled]="!reporteLista">
+                          <mat-icon class="col-white">file_download
+                          </mat-icon>
+                        </button>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <table mat-table [dataSource]="dataSource" class="w-100" #sortTableSort="matSort" matSort>
+          
+              <!-- Name Column -->
+              <ng-container matColumnDef="nombreArea">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Area </th>
+                <td mat-cell *matCellDef="let element"> {{element.nombreArea}} </td>
+              </ng-container>
+              <ng-container matColumnDef="nombreFilial">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Filial </th>
+                <td mat-cell *matCellDef="let element"> {{element.nombreFilial}} </td>
+              </ng-container>
+              <ng-container matColumnDef="nombreSedeAca">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Sede </th>
+                <td mat-cell *matCellDef="let element"> {{element.nombreSedeAca}} </td>
+              </ng-container>
+              <ng-container matColumnDef="codigoLocalSUNEDU">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Codigo Local SUNEDU </th>
+                <td mat-cell *matCellDef="let element"> {{element.codigoLocalSUNEDU}} </td>
+              </ng-container>
+              <ng-container matColumnDef="nombrePrograma">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Programa </th>
+                <td mat-cell *matCellDef="let element"> {{element.nombrePrograma}} </td>
+              </ng-container>
+              <ng-container matColumnDef="nombreEspecialidad">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Especialidad </th>
+                <td mat-cell *matCellDef="let element"> {{element.nombreEspecialidad}} </td>
+              </ng-container>
+              <ng-container matColumnDef="curso">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Asignatura </th>
+                <td mat-cell *matCellDef="let element"> {{element.curso}} </td>
+              </ng-container>
+              <ng-container matColumnDef="turno">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Turno </th>
+                <td mat-cell *matCellDef="let element"> {{element.turno}} </td>
+              </ng-container>
+              <ng-container matColumnDef="fechaInicio">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Fecha Inicio </th>
+                <td mat-cell *matCellDef="let element"> {{element.fechaInicio}} </td>
+              </ng-container>
+              <ng-container matColumnDef="fechaFinal">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Fecha Final </th>
+                <td mat-cell *matCellDef="let element"> {{element.fechaFinal}} </td>
+              </ng-container>
+              <ng-container matColumnDef="grupo">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Grupo </th>
+                <td mat-cell *matCellDef="let element"> {{element.grupo}} </td>
+              </ng-container>
+              <ng-container matColumnDef="flagAmbienteComun">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> N° de Rotacion </th>
+                <td mat-cell *matCellDef="let element"> {{element.flagAmbienteComun}} </td>
+              </ng-container>
+              <ng-container matColumnDef="nombreTipoAmbiente">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Tipo Ambiente </th>
+                <td mat-cell *matCellDef="let element"> {{element.nombreTipoAmbiente}} </td>
+              </ng-container>
+              <ng-container matColumnDef="nombreSede">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Sede </th>
+                <td mat-cell *matCellDef="let element"> {{element.nombreSede}} </td>
+              </ng-container>
+              <ng-container matColumnDef="codigo">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Ambiente </th>
+                <td mat-cell *matCellDef="let element"> {{element.codigo}} </td>
+              </ng-container>
+              <ng-container matColumnDef="aforo">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Aforo </th>
+                <td mat-cell *matCellDef="let element"> {{element.aforo}} </td>
+              </ng-container>
+              <ng-container matColumnDef="lunes" style="flex: 0 0 100px;">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> lunes </th>
+                <td mat-cell *matCellDef="let element"> {{element.lunes}} </td>
+              </ng-container>
+              <ng-container matColumnDef="martes" style="flex: 0 0 100px;">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> martes </th>
+                <td mat-cell *matCellDef="let element"> {{element.martes}} </td>
+              </ng-container>
+              <ng-container matColumnDef="miercoles" style="flex: 0 0 100px;">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> miercoles </th>
+                <td mat-cell *matCellDef="let element"> {{element.miercoles}} </td>
+              </ng-container>
+              <ng-container matColumnDef="jueves" style="flex: 0 0 100px;">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> jueves </th>
+                <td mat-cell *matCellDef="let element"> {{element.jueves}} </td>
+              </ng-container>
+              <ng-container matColumnDef="viernes" style="flex: 0 0 100px;">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> viernes </th>
+                <td mat-cell *matCellDef="let element"> {{element.viernes}} </td>
+              </ng-container>
+              <ng-container matColumnDef="sabado" style="flex: 0 0 100px;">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> sabado </th>
+                <td mat-cell *matCellDef="let element"> {{element.sabado}} </td>
+              </ng-container>
+              <ng-container matColumnDef="domingo" style="flex: 0 0 100px;">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> domingo </th>
+                <td mat-cell *matCellDef="let element"> {{element.domingo}} </td>
+              </ng-container>
+              <!-- Aforo Column -->
+              
+              <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+            <!-- Loading spinner -->
+            <div *ngIf="isTblLoading" class="tbl-spinner">
+              <mat-progress-spinner color="primary" [diameter]="40" mode="indeterminate">
+              </mat-progress-spinner>
+            </div>
+          </div>
+          <div *ngIf="!isTblLoading" class="no-results"
+            [style.display]="dataSource?.data.length == 0 ? '' : 'none'">
+            No results
+          </div>
+          <mat-paginator #paginator [pageSizeOptions]="[5,10, 20]" [pageSize]="10" showFirstLastButtons>
+          </mat-paginator>
+        </div>
+      </div>

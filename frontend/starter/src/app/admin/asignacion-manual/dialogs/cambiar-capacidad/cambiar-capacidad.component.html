@@ -1,0 +1,126 @@
+<div class="addContainer">
+    <div class="modalHeader">
+      <div class="editRowModal">
+        <div class="modalHeader clearfix">          
+          <div class="modal-about">
+            <div class="font-weight-bold p-t-5 font-17">
+              Actualizar Capacidad</div>
+          </div>
+        </div>
+      </div>
+      <button mat-icon-button (click)="dialogRef.close()" aria-label="Close dialog">
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
+    <div mat-dialog-content *ngIf="capacidadGrupoL?.length == 0">
+      <form class="register-form m-4" [formGroup]="proForm" >                
+        <div class="row">
+          <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+            <mat-form-field class="example-full-width mb-3" appearance="outline">
+              <mat-label>Capacidad</mat-label>
+              <input matInput formControlName="capacidad" required min="0">
+              <mat-icon matSuffix>face</mat-icon>
+              <mat-error *ngIf="proForm.get('capacidad').hasError('required')">
+                Capacidad es requerida
+              </mat-error>
+              <mat-error *ngIf="proForm.get('capacidad').hasError('min')">
+                Mayor a n° de matriculados.
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+            <mat-form-field class="example-full-width mb-3" appearance="outline">
+              <mat-label>Capacidad Docente</mat-label>
+              <input matInput formControlName="capacidadDocente" required min="0">
+              <mat-icon matSuffix>face</mat-icon>
+              <mat-error *ngIf="proForm.get('capacidadDocente').hasError('required')">
+                Capacidad Docente es requerido
+              </mat-error>
+              <mat-error *ngIf="proForm.get('capacidadDocente').hasError('min')">
+                Mayor a 0.
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+            <div class="example-button-row">
+              <button mat-raised-button color="primary" type="submit" [disabled]="!proForm.valid"
+                (click)="confirmAdd()">Guardar</button><!-- [mat-dialog-close]="1"-->
+              <button mat-raised-button color="warn" (click)="onNoClick()" tabindex="-1">Cancelar</button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div mat-dialog-content *ngIf="capacidadGrupoL?.length > 0">
+      <form class="register-form m-4" [formGroup]="proForm" >
+                
+        <div class="row" *ngIf="grupoSeleccionado!=null">
+          <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+            <mat-form-field class="example-full-width mb-3" appearance="outline">
+              <mat-label>Capacidad</mat-label>
+              <input matInput formControlName="capacidad" required min="0">
+              <mat-icon matSuffix>face</mat-icon>
+              <mat-error *ngIf="proForm.get('capacidad').hasError('required')">
+                Capacidad es requerida
+              </mat-error>
+              <mat-error *ngIf="proForm.get('capacidad').hasError('min')">
+                Mayor a n° de matriculados.
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+            <mat-form-field class="example-full-width mb-3" appearance="outline">
+              <mat-label>Capacidad Docente</mat-label>
+              <input matInput formControlName="capacidadDocente" required min="0">
+              <mat-icon matSuffix>face</mat-icon>
+              <mat-error *ngIf="proForm.get('capacidadDocente').hasError('required')">
+                Capacidad Docente es requerido
+              </mat-error>
+              <mat-error *ngIf="proForm.get('capacidadDocente').hasError('min')">
+                Mayor a 0.
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row" >
+          <table class="table">
+            <thead>
+              <tr>
+                <th>TIPO ENSEÑANZA</th>
+                <th>TIPO HORA</th>
+                <th>GRUPO</th>
+                <th>CAPACIDAD</th>
+                <th>CAPACIDAD DOCENTE</th>
+                <th>MATRICULADOS</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let option of capacidadGrupoL">
+                <td>{{option.nameTipoEnsenanza}}</td>
+                <td>{{option.nameTipoHora}}</td>
+                <td>{{option.grupo}}</td>
+                <td>{{option.capacidad}}</td>
+                <td>{{option.capacidadDocente}}</td>
+                <td>{{option.matriculados}}</td>
+                <td><mat-radio-button [value]="row" (click)="marcarGrupo(option)" color="primary"></mat-radio-button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="row">
+          <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+            <div class="example-button-row">
+              <button mat-raised-button color="primary" type="submit" [disabled]="!proForm.valid || grupoSeleccionado==null"
+                (click)="confirmAddxGrupo()">Guardar</button><!-- [mat-dialog-close]="1"-->
+              <button mat-raised-button color="warn" (click)="onNoClick()" tabindex="-1">Cancelar</button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  

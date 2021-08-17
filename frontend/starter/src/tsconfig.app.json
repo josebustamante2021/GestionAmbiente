@@ -1,0 +1,17 @@
+{
+  "extends": "../tsconfig.base.json",
+  "compilerOptions": {
+    "outDir": "../out-tsc/app",
+    "paths": {
+      "exceljs": [
+        "node_modules/exceljs/dist"
+      ]
+    },
+    "types": ["node"],
+  },
+  "exclude": [
+    "test.ts",
+    "**/*.spec.ts"
+  ],
+  "files": ["main.ts", "polyfills.ts"]
+}

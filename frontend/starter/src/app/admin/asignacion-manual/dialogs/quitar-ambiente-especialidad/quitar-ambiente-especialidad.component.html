@@ -1,0 +1,36 @@
+<div class="container">
+    <h3 mat-dialog-title>¿Esta seguro de Realizar Eliminación Masiva?</h3>
+    <div mat-dialog-content>
+      <ul class="clearfix">
+        
+          <li>
+            <p><span class="font-weight-bold"> AREA: </span>{{data.area?.descripcion}}</p>
+          </li>
+          <li *ngIf="data.area.codigoArea==04 || data.area.codigoArea==05">
+            <p><span class="font-weight-bold"> Año Proceso: </span>{{data.annoProceso}}</p>
+            <p><span class="font-weight-bold"> Mes Proceso: </span>{{data.mesProceso}}</p>
+          </li>
+          <li *ngIf="data.area.codigoArea!=04 && data.area.codigoArea!=05">
+            <p><span class="font-weight-bold"> SEMESTRE: </span>{{data.semestre}}</p>
+          </li>
+          <li>
+            <p><span class="font-weight-bold"> FILIAL: </span>{{data.filial?.descripcion}}<span *ngIf="data.filial==null">TODOS</span></p>
+          </li>
+          <li>
+            <p><span class="font-weight-bold"> SEDE: </span>{{data.sede?.descripcion}}<span *ngIf="data.sede==null">TODOS</span></p>
+          </li>
+          <li>
+            <p><span class="font-weight-bold"> ESPECIALIDAD: </span>{{data.especialidad?.descripcion}}<span *ngIf="data.especialidad==null">TODOS</span></p>
+          </li>
+          
+      </ul>
+    </div>
+    <div mat-dialog-actions class="mb-1">
+      <button mat-flat-button color="warn" (click)="confirm()">
+        <mat-icon>delete</mat-icon>
+        Quitar Ambientes
+      </button>
+      <button mat-flat-button (click)="onNoClick()" tabindex="-1">Cancelar</button>
+    </div>
+  </div>
+  

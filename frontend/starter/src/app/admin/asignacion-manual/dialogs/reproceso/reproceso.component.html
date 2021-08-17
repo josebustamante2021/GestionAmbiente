@@ -1,0 +1,39 @@
+<div class="container">
+    <h3 mat-dialog-title>¿Esta seguro de Reprocesar esta Programacion Academica?</h3>
+    <div mat-dialog-content>
+      <ul class="clearfix">
+        <li>
+          <p><span class="font-weight-bold"> AREA: </span>{{data.nombreArea}}</p>
+        </li>
+        <li>
+          <p><span class="font-weight-bold"> FILIAL: </span>{{ data.nombreFilial }}</p>
+        </li>
+        <li>
+          <p><span class="font-weight-bold"> SEDE: </span>{{ data.nombreSede }}</p>
+        </li>
+        <li>
+          <p><span class="font-weight-bold"> PROGRAMA: </span>{{ data.nombrePrograma }}</p>
+        </li>
+        <li>
+          <p><span class="font-weight-bold"> ESPECIALIDAD: </span>{{ data.nombreEspecialidad }}</p>
+        </li>
+        <li>
+          <p><span class="font-weight-bold"> ASIGNATURA: </span>{{ data.curso }}</p>
+        </li>
+        <li>
+          <p><span class="font-weight-bold"> CICLO: </span>{{ data.ciclo }}</p>
+        </li>
+        <li>
+          <p><span class="font-weight-bold"> TURNO: </span>{{ data.turno }}</p>
+        </li>
+      </ul>
+    </div>
+    <div mat-dialog-actions class="mb-1">
+      <button mat-flat-button color="primary" (click)="confirm()">
+        <mat-icon>cached</mat-icon>
+        Procesar
+      </button>
+      <button mat-flat-button (click)="onNoClick()" tabindex="-1">Cancelar</button>
+    </div>
+  </div>
+  
