@@ -298,6 +298,12 @@ export class DistribucionTurnoComponent implements OnInit {
       , flag: this.form.controls.flag.value
       , listaDistribucionTurno:this.progAcademicaLista
     };
+
+    if(this.form.controls.flag.value){
+      this.displayedColumnsSimulacion = ['nombreArea','nombreFilial','nombreSede','codigoLocalSUNEDU','nombrePrograma','nombreEspecialidad','manana','tarde','noche'];
+    }else{
+      this.displayedColumnsSimulacion = ['nombreArea','semestre','annoProceso','mesProceso','nombreFilial','nombreSede','codigoLocalSUNEDU','nombrePrograma','nombreEspecialidad','ciclo','curso','turno','fechaInicio','fechaFin', 'nombreTipoAmbiente','grupo','manana','tarde','noche']
+    }
     this.requestFilter=request;
     return request;
   }
