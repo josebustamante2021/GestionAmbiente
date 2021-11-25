@@ -357,7 +357,7 @@ export class ExcelService {
     console.log(request);
        
     //let url = "/assets/upsjb/plantillas/ReporteDistribucionTurnosFlagPlantilla.xlsx";
-    const header = ["Area", "Filial", "Sede", "Codigo Local SUNEDU", "Programa", "Escuela","Asignatura", "Mañana", "Tarde", "Noche"]
+    const header = ["Area", "Filial", "Sede", "Codigo Local SUNEDU", "Programa", "Escuela","Mañana", "Tarde", "Noche"]
     
     let workbook = new Workbook();
 
@@ -400,10 +400,10 @@ export class ExcelService {
       row.getCell(4).value = rowData.codigoLocalSUNEDU;
       row.getCell(5).value = rowData.nombrePrograma;
       row.getCell(6).value = rowData.nombreEspecialidad;
-      row.getCell(7).value = rowData.curso;
-      row.getCell(8).value = rowData.manana;
-      row.getCell(9).value = rowData.tarde;
-      row.getCell(10).value = rowData.noche;
+     // row.getCell(7).value = rowData.curso;
+      row.getCell(7).value = rowData.manana;
+      row.getCell(8).value = rowData.tarde;
+      row.getCell(9).value = rowData.noche;
       numRow++;
     }
 
@@ -412,7 +412,7 @@ export class ExcelService {
     worksheet.getColumn(2).width = 15;
     worksheet.getColumn(3).width = 15;
     worksheet.getColumn(6).width = 20;
-    worksheet.getColumn(7).width = 30;
+    //worksheet.getColumn(7).width = 30;
     let headerRow = worksheet.getRow(9);
     headerRow.values = header;
     // Cell Style : Fill and Border
@@ -430,7 +430,7 @@ export class ExcelService {
     headerRow.font = { bold: true,color: {argb: "FFFFFFFF"} }
     worksheet.autoFilter = {
       from: 'A9',
-      to: 'J9',
+      to: 'I9',
     }
     //Generate Excel File with given name
     workbook.xlsx.writeBuffer().then((data) => {
