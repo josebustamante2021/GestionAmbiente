@@ -201,68 +201,69 @@
               </div>
             </div>
           </div>
-          <table mat-table [dataSource]="dataSource" class="w-100" #sortTableSort="matSort" matSort>
+          
+          <table mat-table [dataSource]="dataSource" class="w-100" #sortTableSort="matSort" matSort fixedLayout="true" style="width: 200%;">
         
             <!-- Name Column -->
             <ng-container matColumnDef="nombreFilial">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header> Filial </th>
-              <td mat-cell *matCellDef="let element"> {{element.nombreFilial}} </td>
+              <th mat-header-cell *matHeaderCellDef mat-sort-header class="myHeader"> Filial </th>
+              <td mat-cell *matCellDef="let element" class="myCell"> {{element.nombreFilial}} </td>
             </ng-container>
             <ng-container matColumnDef="nombreSede">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header> Sede </th>
-              <td mat-cell *matCellDef="let element"> {{element.nombreSede}} </td>
+              <th mat-header-cell *matHeaderCellDef mat-sort-header class="myHeader"> Sede </th>
+              <td mat-cell *matCellDef="let element" class="myCell"> {{element.nombreSede}} </td>
             </ng-container>
             <ng-container matColumnDef="codigoLocalSUNEDU">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header> Codigo Local SUNEDU </th>
-              <td mat-cell *matCellDef="let element"> {{element.codigoLocalSUNEDU}} </td>
+              <th mat-header-cell *matHeaderCellDef mat-sort-header class="myHeader"> Codigo Local SUNEDU </th>
+              <td mat-cell *matCellDef="let element" class="myCell"> {{element.codigoLocalSUNEDU}} </td>
             </ng-container>
             <ng-container matColumnDef="nombrePrograma">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header> Programa </th>
-              <td mat-cell *matCellDef="let element"> {{element.nombrePrograma}} </td>
+              <th mat-header-cell *matHeaderCellDef mat-sort-header class="myHeader"> Programa </th>
+              <td mat-cell *matCellDef="let element" class="myCell"> {{element.nombrePrograma}} </td>
             </ng-container>
             <ng-container matColumnDef="nombreEspecialidad">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header> Especialidad </th>
-              <td mat-cell *matCellDef="let element"> {{element.nombreEspecialidad}} </td>
+              <th mat-header-cell *matHeaderCellDef mat-sort-header class="myHeader"> Especialidad </th>
+              <td mat-cell *matCellDef="let element" class="myCell"> {{element.nombreEspecialidad}} </td>
             </ng-container>
             <ng-container matColumnDef="turno">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header> Turno </th>
-              <td mat-cell *matCellDef="let element"> {{element.turno}} </td>
+              <th mat-header-cell *matHeaderCellDef mat-sort-header class="myHeader"> Turno </th>
+              <td mat-cell *matCellDef="let element" class="myCell"> {{element.turno}} </td>
             </ng-container>
             <ng-container matColumnDef="curso">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header> Asignatura </th>
-              <td mat-cell *matCellDef="let element"> {{element.curso}} </td>
+              <th mat-header-cell *matHeaderCellDef mat-sort-header class="myHeader"> Asignatura </th>
+              <td mat-cell *matCellDef="let element"class="myCell" > {{element.curso}} </td>
             </ng-container>
             <ng-container matColumnDef="ciclo">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header> Ciclo </th>
-              <td mat-cell *matCellDef="let element"> {{element.ciclo}} </td>
+              <th mat-header-cell *matHeaderCellDef mat-sort-header class="myHeader"> Ciclo </th>
+              <td mat-cell *matCellDef="let element" class="myCell"> {{element.ciclo}} </td>
             </ng-container>
             <ng-container matColumnDef="nombreTipoAmbiente">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header> Tipo Ambiente </th>
-              <td mat-cell *matCellDef="let element"> {{element.nombreTipoAmbiente}} </td>
+              <th mat-header-cell *matHeaderCellDef mat-sort-header class="myHeader"> Tipo Ambiente </th>
+              <td mat-cell *matCellDef="let element" class="myCell"> {{element.nombreTipoAmbiente}} </td>
             </ng-container>
             <ng-container matColumnDef="nombreTipoHora">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header> Tipo Hora </th>
-              <td mat-cell *matCellDef="let element"> {{element.nombreTipoHora}} </td>
+              <th mat-header-cell *matHeaderCellDef mat-sort-header class="myHeader"> Tipo Hora </th>
+              <td mat-cell *matCellDef="let element" class="myCell"> {{element.nombreTipoHora}} </td>
             </ng-container>
             <ng-container matColumnDef="nombreTipoEnsenanza">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header> Tipo Enseñanza </th>
-              <td mat-cell *matCellDef="let element"> {{element.nombreTipoEnsenanza}} </td>
+              <th mat-header-cell *matHeaderCellDef mat-sort-header class="myHeader"> Tipo Enseñanza </th>
+              <td mat-cell *matCellDef="let element" class="myCell"> {{element.nombreTipoEnsenanza}} </td>
             </ng-container>
             <ng-container matColumnDef="capacidad">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header> Capacidad </th>
-              <td mat-cell *matCellDef="let element"> {{element.capacidad}} </td>
+              <th mat-header-cell *matHeaderCellDef mat-sort-header class="myHeader"> Capacidad </th>
+              <td mat-cell *matCellDef="let element" class="myCell"> {{element.capacidad}} </td>
             </ng-container>
             <ng-container matColumnDef="matriculados">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header> Matriculados </th>
-              <td mat-cell *matCellDef="let element"> {{element.matriculados}} </td>
+              <th mat-header-cell *matHeaderCellDef mat-sort-header class="myHeader"> Matriculados </th>
+              <td mat-cell *matCellDef="let element" class="myCell"> {{element.matriculados}} </td>
             </ng-container>
             <ng-container matColumnDef="asignado">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header> Asignado </th>
-              <td mat-cell *matCellDef="let element"> {{element.asignado}} </td>
+              <th mat-header-cell *matHeaderCellDef mat-sort-header  class="myHeader"> Asignado </th>
+              <td mat-cell *matCellDef="let element" class="myCell"> {{element.asignado}} </td>
             </ng-container>
             <ng-container matColumnDef="noAsignado">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header> NO Asignado </th>
-              <td mat-cell *matCellDef="let element"> {{element.noAsignado}} </td>
+              <th mat-header-cell *matHeaderCellDef mat-sort-header class="myHeader"> NO Asignado </th>
+              <td mat-cell *matCellDef="let element"  > {{element.noAsignado}} </td>
             </ng-container>
             <!-- Aforo Column -->
             

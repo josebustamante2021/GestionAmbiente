@@ -1,3 +1,244 @@
 .mat-form-field-wrapper{
     padding-bottom:0em
 }
+/*
+.mat-table__wrapper .mat-table {
+    min-width: auto !important;
+    width: 100% !important;
+}
+
+.mat-header-row {
+    width: 100%;
+}
+
+.mat-row {
+    width: 100%;
+}
+*/
+.mat-column-nombreFilial {
+    word-wrap: break-word !important;
+    white-space: unset !important;
+    flex: 0 0 100px !important;
+    width: 100px !important;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+  
+    word-break: break-word;
+  
+    -ms-hyphens: auto;
+    -moz-hyphens: auto;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+}
+.mat-column-nombreSede {
+    word-wrap: break-word !important;
+    white-space: unset !important;
+    flex: 0 0 150px !important;
+    width: 150px !important;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+  
+    word-break: break-word;
+  
+    -ms-hyphens: auto;
+    -moz-hyphens: auto;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+}
+.mat-column-codigoLocalSUNEDU {
+    word-wrap: break-word !important;
+    white-space: unset !important;
+    flex: 0 0 100px !important;
+    width: 100px !important;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+  
+    word-break: break-word;
+  
+    -ms-hyphens: auto;
+    -moz-hyphens: auto;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+}
+.mat-column-nombrePrograma {
+    word-wrap: break-word !important;
+    white-space: unset !important;
+    flex: 0 0 100px !important;
+    width: 100px !important;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+  
+    word-break: break-word;
+  
+    -ms-hyphens: auto;
+    -moz-hyphens: auto;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+}
+.mat-column-nombreEspecialidad {
+    word-wrap: break-word !important;
+    white-space: unset !important;
+    flex: 0 0 400px !important;
+    width: 400px !important;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+  
+    word-break: break-word;
+  
+    -ms-hyphens: auto;
+    -moz-hyphens: auto;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+}
+.mat-column-turno {
+    word-wrap: break-word !important;
+    white-space: unset !important;
+    flex: 0 0 100px !important;
+    width: 100px !important;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+  
+    word-break: break-word;
+  
+    -ms-hyphens: auto;
+    -moz-hyphens: auto;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+}
+.mat-column-curso {
+    word-wrap: break-word !important;
+    white-space: unset !important;
+    flex: 0 0 400px !important;
+    width: 400px !important;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+  
+    word-break: break-word;
+  
+    -ms-hyphens: auto;
+    -moz-hyphens: auto;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+}
+.mat-column-ciclo {
+    word-wrap: break-word !important;
+    white-space: unset !important;
+    flex: 0 0 100px !important;
+    width: 100px !important;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+  
+    word-break: break-word;
+  
+    -ms-hyphens: auto;
+    -moz-hyphens: auto;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+}
+.mat-column-nombreTipoAmbiente {
+    word-wrap: break-word !important;
+    white-space: unset !important;
+    flex: 0 0 100px !important;
+    width: 100px !important;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+  
+    word-break: break-word;
+  
+    -ms-hyphens: auto;
+    -moz-hyphens: auto;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+}
+.mat-column-nombreTipoHora {
+    word-wrap: break-word !important;
+    white-space: unset !important;
+    flex: 0 0 100px !important;
+    width: 100px !important;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+  
+    word-break: break-word;
+  
+    -ms-hyphens: auto;
+    -moz-hyphens: auto;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+}
+.mat-column-nombreTipoEnsenanza {
+    word-wrap: break-word !important;
+    white-space: unset !important;
+    flex: 0 0 100px !important;
+    width: 100px !important;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+  
+    word-break: break-word;
+  
+    -ms-hyphens: auto;
+    -moz-hyphens: auto;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+}
+.mat-column-capacidad {
+    word-wrap: break-word !important;
+    white-space: unset !important;
+    flex: 0 0 100px !important;
+    width: 100px !important;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+  
+    word-break: break-word;
+  
+    -ms-hyphens: auto;
+    -moz-hyphens: auto;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+}
+.mat-column-matriculados {
+    word-wrap: break-word !important;
+    white-space: unset !important;
+    flex: 0 0 105px !important;
+    width: 105px !important;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+  
+    word-break: break-word;
+  
+    -ms-hyphens: auto;
+    -moz-hyphens: auto;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+}
+
+.mat-column-asignado {
+    word-wrap: break-word !important;
+    white-space: unset !important;
+    flex: 0 0 400px !important;
+    width: 400px !important;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+  
+    word-break: break-word;
+  
+    -ms-hyphens: auto;
+    -moz-hyphens: auto;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+}
+
+.mat-column-noAsignado {
+    word-wrap: break-word !important;
+    white-space: unset !important;
+    flex: 0 0 400px !important;
+    width: 400px !important;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+  
+    word-break: break-word;
+  
+    -ms-hyphens: auto;
+    -moz-hyphens: auto;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+}
